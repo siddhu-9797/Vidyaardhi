@@ -1,0 +1,401 @@
+<!Doctype HTML>
+<html lang = "en-GB">
+<head>
+    <title>New Question</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.1/js/fileinput.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.1/css/fileinput.css"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script>
+    var acc = 0,first=true,b=0,reload=0;
+    var first = 1;
+function provide(){
+    val = document.getElementById("nans").value;
+    apnd = document.getElementById("cas_ans");
+    apnd.innerHTML="";
+    var aTag = document.createElement('label');
+    aTag.setAttribute('for',"answer1");
+    aTag.setAttribute('style',"color:chocolate");
+    aTag.innerText = "Write an Answer";
+    apnd.appendChild(aTag);
+    var bTag = document.createElement('input');
+    bTag.setAttribute('type',"text");
+    bTag.setAttribute('class',"form-control");
+    bTag.setAttribute('id',"answer1");
+    bTag.setAttribute('name','ans1');
+    bTag.setAttribute('autocomplete','off');
+    apnd.appendChild(bTag);
+    
+    val =  parseInt(val);
+    console.log("val is " + val + " acc is " + acc);
+    
+    if(val>1){
+            for(i=2;i<=val;i++){
+                    
+                    var aTag = document.createElement('label');
+                    aTag.setAttribute('for',"answer"+val);
+                    aTag.setAttribute('style',"color:chocolate");
+                    aTag.innerText = "Write another answer:";
+                    apnd.appendChild(aTag);
+                    var bTag = document.createElement('input');
+                    bTag.setAttribute('type',"text");
+                    bTag.setAttribute('class',"form-control");
+                    bTag.setAttribute('id',"answer"+val);
+                    bTag.setAttribute('name','ans' + i);
+                    bTag.setAttribute('autocomplete','off');
+                    apnd.appendChild(bTag);
+                    
+                }
+        }
+
+}
+
+function create_topic(){
+        var sub = document.getElementById("subject").value;
+        var top = document.getElementById("topic");
+        top.disabled=false;
+        
+        if(sub==1){
+                top.innerHTML="";
+                var i=1;
+                for(i=1;i<=3;i++){
+                var aTag = document.createElement("option");
+                aTag.setAttribute('value',i);
+                if(i==1){
+                aTag.innerText = "Arithmetic"
+                }
+                else if(i==2){
+                        aTag.innerText = "Geometry";
+                }
+                else{
+                        aTag.innerText = "Fractions";
+                }
+                top.appendChild(aTag);
+
+                }
+                
+        }
+        else if(sub == 2){
+                top.innerHTML="";
+                var i=1;
+                for(i=1;i<=3;i++){
+                var aTag = document.createElement("option");
+                aTag.setAttribute('value',i);
+                if(i==1){
+                aTag.innerText = "English1"
+                }
+                else if(i==2){
+                        aTag.innerText = "English2";
+                }
+                else{
+                        aTag.innerText = "English3";
+                }
+                top.appendChild(aTag);
+
+                }
+
+        }
+        else if(sub == 3){
+                top.innerHTML="";
+                var i=1;
+                for(i=1;i<=3;i++){
+                var aTag = document.createElement("option");
+                aTag.setAttribute('value',i);
+                if(i==1){
+                aTag.innerText = "VR1"
+                }
+                else if(i==2){
+                        aTag.innerText = "VR2";
+                }
+                else{
+                        aTag.innerText = "VR3";
+                }
+                top.appendChild(aTag);
+
+                }
+        }
+        else if(sub == 4){
+        top.innerHTML="";
+        var i=1;
+        for(i=1;i<=3;i++){
+        var aTag = document.createElement("option");
+        aTag.setAttribute('value',i);
+        if(i==1){
+        aTag.innerText = "NVR1"
+        }
+        else if(i==2){
+                aTag.innerText = "NVR2";
+        }
+        else{
+                aTag.innerText = "NVR3";
+        }
+        top.appendChild(aTag);
+
+        }
+
+        }
+        else if(sub == 5){
+        top.innerHTML="";
+        var i=1;
+        for(i=1;i<=3;i++){
+        var aTag = document.createElement("option");
+        aTag.setAttribute('value',i);
+        if(i==1){
+        aTag.innerText = "GK1"
+        }
+        else if(i==2){
+                aTag.innerText = "GK2";
+        }
+        else{
+                aTag.innerText = "GK3";
+        }
+        top.appendChild(aTag);
+
+        }
+
+        }
+}
+
+function changeit(){
+        var multipl = document.getElementById("switch").checked;
+        console.log(multipl);
+        if(multipl == true){
+                document.getElementById("question_head").innerHTML = "Write Question description:";
+                document.getElementById("multi_description").hidden = false;
+                document.getElementById("submit_btn").type = "button";
+                document.getElementById("save&next").hidden = false;
+                document.getElementById("ques_description").required = true;
+                document.getElementById("submit_btn").addEventListener('click', postit);
+                document.getElementById("submit_btn").addEventListener('click', pagereload);
+                
+
+        }
+        else{
+                document.getElementById("question_head").innerHTML = "Write a Question:";
+                document.getElementById("multi_description").hidden = true;
+                document.getElementById("submit_btn").type = "submit";
+                document.getElementById("save&next").hidden = true;
+                document.getElementById("ques_description").required = false;
+                document.getElementById("submit_btn").removeEventListener('click', postit);
+                document.getElementById("submit_btn").removeEventListener('click', pagereload);
+        }
+}
+
+function postit(){
+        var send_subject = (document.getElementById("subject").value);
+        var send_topic = (document.getElementById("topic").value);
+        var send_level = (document.getElementById("level").value);
+
+        var qstn_head = (document.getElementById("question").value);
+        var sub_qstn = document.getElementById("ques_description").value;
+        console.log(typeof(sub_qutn));
+        var op1 =  document.getElementById("validationServer03").value;
+        var op2 = document.getElementById("validationServer04").value;
+        var op3 = document.getElementById("validationServer05").value;
+        var op4 = document.getElementById("validationServer06").value;
+        var nofans = document.getElementById("nans").value;
+        var ansr = document.getElementById("answer1").value;
+        var soln = document.getElementById("solution").value;
+        if(first==1){
+        $.ajax({ 
+                url: '/add', 
+                type: 'POST', 
+                dataType: 'json',
+                data: {subject:send_subject,topic:send_topic,level:send_level,question:qstn_head,input1:sub_qstn,input2:op1,input3:op2,input4:op3,input5:op4,input6:nofans,input7:ansr,input8:soln},
+    
+        })
+        first =0;
+        }
+
+        else{
+                $.ajax({ 
+                url: '/add', 
+                type: 'POST', 
+                dataType: 'json',
+                data: {input1:sub_qstn,input2:op1,input3:op2,input4:op3,input5:op4,input6:nofans,input7:ansr,input8:soln},
+    
+        })
+
+        }
+      
+        console.log("sub_qstn " +sub_qstn + " " + "op1 " +  op1 + " " + "op2 " + op2 + " " + "op3 " +  op3 +" " + "op4 " +  op4 + " " + "nofans " +  nofans + 
+                " " + "ansr " +   ansr + " " + "soln " +  soln);
+
+        document.getElementById("question").disabled = true;
+        document.getElementById("ques_description").focus();
+        document.getElementById("ques_description").value = "";
+        document.getElementById("validationServer03").value = ""
+        document.getElementById("validationServer04").value = "";
+        document.getElementById("validationServer05").value = "";
+        document.getElementById("validationServer06").value = "";
+        document.getElementById("answer1").value =1;
+        document.getElementById("answer1").value = "";
+        document.getElementById("solution").value = "";
+
+        window.alert("Data Submitted to Server.");
+        
+}
+
+function pagereload(){
+        location.reload(false);
+
+}
+
+</script>
+
+</head>
+<body >
+    <div class="container" style="font-size:xx-large; font-weight: bolder; text-align: center; color:darkmagenta; margin-top: 1%;margin-bottom: 3%;">
+            ADD QUESTIONS & ANSWERS TO THE DATABASE
+    </div>
+    <div class="container">
+    <form method="POST" action="/add" enctype="multipart/form-data">
+        <div class="form-row">
+                <div class="col-md-3 mb-3">
+                    <label for="subject" style="color: blue; font-size:20px; font-weight:500;">Subject</label>
+                    <select class="custom-select  form-control" id = "subject" name="subject" onchange="create_topic();">
+                        <option selected value="0">Select a Subject</option>
+                        <option value="Maths">Maths</option>
+                        <option value="English">English</option>
+                        <option value="Verbal Reasoning">Verbal Reasoning</option>
+                        <option value="Non-Verbal Reasoning">Non-Verbal Reasoning</option>
+                        <option value="General Knowledge">General Knowledge</option>
+
+                    </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                            <label for="subject" style="color: blue; font-size:20px; font-weight:500;">Topic</label>
+                            <select class="custom-select  form-control" id = "topic" name="topic" disabled>
+                                <option selected value="0" >First Select Subject</option>
+                                <option value="Arithmetic">Arithmetic</option>
+                                <option value="Geometry">Geometry</option>
+                                <option value="Fractions">Fractions</option>
+                            </select>
+                        </div>
+                     <div class="col-md-3 mb-3">
+                            <label for="subject" style="color: blue; font-size:20px; font-weight:500;">Level</label>
+                            <select class="custom-select  form-control" id = "level" name="level">
+                                <option selected value="0">Select a Level</option>
+                                <option value="1">Level1</option>
+                                <option value="2">Level2</option>
+                                <option value="3">Level3</option>
+                            </select>
+                        </div>
+                      
+        </div>
+        <div class="form-row">
+        <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="switch" onclick="changeit();" >
+                <label class="custom-control-label" for="switch">Toggle this if multiple questions under same question</label>
+              </div>
+        </div>
+        <div class="form-row">
+                <div class="form-group">
+                <label for="question" style="color: blue; font-size:20px; font-weight:500;" id="question_head">Write a Question:</label>
+                <textarea class="form-control" rows="5"cols="100" id="question" name="question" autocomplete="off"></textarea>
+            </div>
+        </div>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------->
+        <div class="form-row" id="multi_description" hidden>
+                <div class="form-group">
+                <label for="question" style="color: blue; font-size:20px; font-weight:500;" id="question_head">Write a Sub-Question:</label>
+                <textarea class="form-control" rows="5"cols="100" id="ques_description" name="ques_description" autocomplete="off" ></textarea>
+            </div>
+        </div>
+        
+        <div class="form-row">
+                <div class="col-md-4 mb-3"><div style="color: blue; font-size:20px; font-weight:500;">Provide Multiple options:</div>
+        </div>
+        </div>
+        <div class="form-row">
+                <div class="col-md-4 mb-3">
+                        <label for="validationServer03" style="color:chocolate;">Option1:</label>
+                        <input type="text" class="form-control" id="validationServer03" name = "option1" autocomplete="off" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                        <label for="validationServer04" style="color:chocolate;">Option2:</label>
+                        <input type="text" class="form-control" id="validationServer04" name="option2" autocomplete = "off" required>
+                        
+                </div>
+
+        </div>
+        <div class="form-row">
+                <div class="col-md-4 mb-3">
+                        <label for="validationServer05" style="color:chocolate;">Option3:</label>
+                        <input type="text" class="form-control" id="validationServer05" name="option3" autocomplete="off" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                        <label for="validationServer06" style="color:chocolate;" >Option4:</label>
+                        <input type="text" class="form-control" id="validationServer06" name="option4" autocomplete="off" required>
+                </div>
+
+        </div>
+
+        <div class="form-row">
+
+                <div class="col-md-3 mb-3">
+                        <label for="nans" style="color: blue; font-size:20px; font-weight:500;">Possible Answers:</label>
+                        <select class="custom-select  form-control" id = "nans" name="nans" onchange="provide();">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+    
+                        </select>
+                        </div>
+
+        </div>
+        <div class="form-row">
+                <div class="col-md-4 mb-3" id="cas_ans">
+                        <label for="answer1" style="color:chocolate;" >Write Answer:</label>
+                        <input type="text" class="form-control" id="answer1" name="ans1" autocomplete="off" required>
+                       
+                      </div>
+
+        </div>
+
+        <div class="form-row">
+                <div class="form-group">
+                <label for="solution" style="color: blue; font-size:20px; font-weight:500;">Provide Detailed Solution:</label>
+                <textarea required class="form-control" rows="5"cols="100" id="solution" name="solution" autocomplete="off"></textarea>
+            </div>
+        </div>
+        <div class = "form-row">
+                <button class="btn btn-primary" id="save&next" type="button" hidden onclick="postit();">SAVE & NEXT</button>
+        </div>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------->
+
+        
+        
+                <div class="form-row">
+                        <div class="form-group">
+                                <label for="files" style="color: blue; font-size:20px; font-weight:500;">Choose Files to upload (If any)....</label>
+                                <input type="file" class="form-control-file" autocomplete="off" id="files">
+                              </div>
+                </div>
+
+
+    
+     
+       
+        <button class="btn btn-primary" id="submit_btn" type="submit">SUBMIT</button>
+      </form>
+    </div>
+</body>
+</html>
