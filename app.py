@@ -46,11 +46,9 @@ class Sub(db.Model):
     filedata = db.Column(db.LargeBinary, nullable=True)
     solution = db.Column(db.Text, nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'), nullable=False)
-try:
-    db.create_all()
-except:
-    print("!!!!!")
-    pass
+
+db.create_all()
+
 
 
 
