@@ -47,8 +47,10 @@ class Sub(db.Model):
     solution = db.Column(db.Text, nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'), nullable=False)
 
-db.create_all()
-
+try:
+    db.create_all()
+except:
+    pass
 
 
 
