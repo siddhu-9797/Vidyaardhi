@@ -150,7 +150,10 @@ def add():
 @app.route("/display", methods=['GET', 'POST'])
 def display():
     random_id = random.randint(1,6)
-    take = Question.query.all()
+    try:
+        take = Question.query.all()
+    except:
+        return "</h1>Something went wrong with the database connections.</h1>"
     pick = Sub.query.all()
     
     total_ques = len(pick)
