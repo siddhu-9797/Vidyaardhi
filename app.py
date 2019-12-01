@@ -8,7 +8,8 @@ import pyodbc
 from sqlalchemy import create_engine
 
 # Configure Database URI: 
-params = urllib.parse.quote_plus("DRIVER={SQL Server};SERVER=pdevdb.database.windows.net;DATABASE=p_devDB;UID=siddhu;PWD=Exploretheworld!")
+#params = urllib.parse.quote_plus("DRIVER={SQL Server};SERVER=pdevdb.database.windows.net;DATABASE=p_devDB;UID=siddhu;PWD=Exploretheworld!")
+params = urllib.parse.quote_plus("DRIVER={SQL Server};SERVER=tcp:pdevdb.database.windows.net,1433;DATABASE=p_devDB;UID=siddhu;PWD=Exploretheworld!;ENCRYPT=yes;TRUSTSERVERCERTIFICATE=no;CONNECTION TIMEOUT=30")
 #DRIVER={ODBC Driver 13 for SQL Server};PORT=1433;SERVER=tcp:pdevdb.database.windows.net;PORT=1433;DATABASE=p_devDB;UID=siddhu;PWD=Exploretheworld!
 app= Flask(__name__)
 
