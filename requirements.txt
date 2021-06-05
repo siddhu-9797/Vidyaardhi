@@ -2,7 +2,7 @@ Flask-SQLAlchemy==2.4.0
 Flask==1.0.3
 Flask-Login==0.4.1
 Flask-WTF==0.14.2
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.0
 Click==7.0
 urllib3==1.25.3
